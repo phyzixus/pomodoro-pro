@@ -1,18 +1,25 @@
-let data = JSON.parse(localStorage.getItem("data")) || {
-  days: {}
-};
+document.addEventListener("DOMContentLoaded", () => {
 
-let chart;
+  let data = JSON.parse(localStorage.getItem("data")) || {
+    days: {}
+  };
 
-function todayKey() {
-  return new Date().toISOString().split("T")[0];
-}
+  window.data = data; // make global
+  window.chart = null;
 
-document.getElementById("startBtn").addEventListener("click", startTimer);
-document.getElementById("resetBtn").addEventListener("click", resetTimer);
+  function todayKey() {
+    return new Date().toISOString().split("T")[0];
+  }
 
-updateDisplay();
-updateStats();
-updateChart();
-updateDailyBreakdown();
-calculateStreak();
+  window.todayKey = todayKey;
+
+  document.getElementById("startBtn").addEventListener("click", startTimer);
+  document.getElementById("resetBtn").addEventListener("click", resetTimer);
+
+  updateDisplay();
+  updateStats();
+  updateChart();
+  updateDailyBreakdown();
+  calculateStreak();
+
+});
